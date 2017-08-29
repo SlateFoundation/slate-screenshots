@@ -9,10 +9,9 @@ exports.capture = function(destination, urls) {
     }
 
     const pageres = new Pageres({
-        cookies: [{
-            name: 's_sla-cc-live',
-            value: sessionToken
-        }],
+        headers: {
+            Authorization: 'Token '+sessionToken
+        },
         delay: 2,
         filename: '<%= url %>'
     });
