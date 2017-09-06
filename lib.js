@@ -13,6 +13,7 @@ exports.capture = function(destination, urls) {
             name: 's_sla-cc-live',
             value: sessionToken
         }],
+        delay: 2,
         filename: '<%= url %>'
     });
 
