@@ -14,3 +14,10 @@
 - Execute `node capture.js YOUR_SESSION_HANDLE`
 - Review changes identified by git
 - Commit and push new/changed screenshots to accept as new baseline
+
+
+## TODO
+
+- [ ] Extract lib.js to a standalone npm module called `website-snapshotter`
+- [ ] Include CLI command for creating a new site profile, creating directory and generating `capture.js` based on interactive prompts
+- [ ] Support some basic authentication techniques that could be configured via `capture.js`'s call: HTTP auth, header, or cookie
