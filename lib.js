@@ -31,19 +31,28 @@ exports.capture = async function(destination, host, pages) {
     });
 
     for (const pageKey of Object.keys(pages)) {
-        const pagePath = pages[pageKey];
+        const pageSpec = typeof pages[pageKey] == 'string' ? { path: pages[pageKey] } : pages[pageKey];
+        const pagePath = pageSpec.path;
         const pageFilename = `${pageKey}.png`;
 
         console.log('\tRendering %s to %s', pagePath, pageFilename);
 
-        await page.goto(path.join(host, pagePath), {
-            waitUntil: 'networkidle'
-        });
+        try {
+            await page.goto(path.join(host, pagePath), {
+                waitUntil: 'networkidle'
+            });
 
-        await page.screenshot({
-            path: path.join(destination, pageFilename),
-            fullPage: true
-        });
+            if (pageSpec.waitFor) {
+                await page.waitFor(pageSpec.waitFor);
+            }
+
+            await page.screenshot({
+                path: path.join(destination, pageFilename),
+                fullPage: true
+            });
+        } catch (err) {
+            console.log('\tFailed to capture page: %s', err.toString());
+        }
     }
 
     await browser.close();
