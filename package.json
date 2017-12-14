@@ -9,6 +9,6 @@
   "author": "Chris Alfano <chris@jarv.us>",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^0.12.0"
+    "website-snapshotter": "^0.1.0"
   }
 }
